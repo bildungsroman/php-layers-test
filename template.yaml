@@ -44,6 +44,9 @@ Resources:
             Path: /{proxy+}
             Method: GET
             RestApiId: !Ref api4F3096BC
+      Environment:
+        Variables:
+          LAYER_REGION: !Ref EnvConfiglayerRegionAsString
     Metadata:
       StackeryName: PHP
 Parameters:
@@ -56,3 +59,9 @@ Parameters:
   EnvironmentAPIGatewayStageName:
     Type: String
     Description: Environment name used for API Gateway Stage names (injected by Stackery at deployment time)
+  EnvConfiglayerRegionAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /<EnvironmentName>/layerRegion
+Metadata:
+  EnvConfigParameters:
+    EnvConfiglayerRegionAsString: layerRegion
