@@ -36,7 +36,7 @@ Resources:
       Policies:
         - AWSXrayWriteOnlyAccess
       Layers:
-        - arn:aws:lambda:${LAYER_REGION}:887080169480:layer:php71:3
+        - arn:aws:lambda:us-east-1:887080169480:layer:php71:3
       Events:
         api4F3096BCGETproxy:
           Type: Api
