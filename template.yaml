@@ -65,6 +65,9 @@ Resources:
         - AWSXrayWriteOnlyAccess
       Layers:
         - !Ref EnvConfiglayerArnAsString
+      Environment:
+        Variables:
+          GITHUB: !Ref EnvConfiggithubSecretAsString
 Parameters:
   StackTagName:
     Type: String
@@ -78,6 +81,10 @@ Parameters:
   EnvConfiglayerArnAsString:
     Type: AWS::SSM::Parameter::Value<String>
     Default: /<EnvironmentName>/layerArn
+  EnvConfiggithubSecretAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /<EnvironmentName>/githubSecret
 Metadata:
   EnvConfigParameters:
     EnvConfiglayerArnAsString: layerArn
+    EnvConfiggithubSecretAsString: githubSecret
