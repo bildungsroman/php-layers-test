@@ -63,8 +63,7 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
-      Layers:
-        - arn:aws:lambda:us-east-1:887080169480:layer:php71:3
+      Layers: !Ref layerArn
     Metadata:
       StackeryName: testMe
 Parameters:
