@@ -48,14 +48,14 @@ Resources:
         Variables: {}
     Metadata:
       StackeryName: PHP
-  function7616AFD9:
+  function79813089:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub ${AWS::StackName}-function7616AFD9
+      FunctionName: !Sub ${AWS::StackName}-function79813089
       Description: !Sub
         - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: testMe
-      CodeUri: src/testMe
+        - ResourceName: function79813089
+      CodeUri: src/function79813089
       Handler: index.handler
       Runtime: nodejs8.10
       MemorySize: 3008
@@ -63,9 +63,8 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
-      Layers: !Ref layerArn
-    Metadata:
-      StackeryName: testMe
+      Layers:
+        - !Ref EnvConfiglayerArnAsString
 Parameters:
   StackTagName:
     Type: String
@@ -76,3 +75,9 @@ Parameters:
   EnvironmentAPIGatewayStageName:
     Type: String
     Description: Environment name used for API Gateway Stage names (injected by Stackery at deployment time)
+  EnvConfiglayerArnAsString:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /<EnvironmentName>/layerArn
+Metadata:
+  EnvConfigParameters:
+    EnvConfiglayerArnAsString: layerArn
